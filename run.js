@@ -1,4 +1,5 @@
 const Dimension = require('dimensions-ai');
+const { RankSystem } = require('dimensions-ai/lib/main/Tournament')
 let Tournament = Dimension.Tournament;
 let Logger = Dimension.Logger;
 
@@ -41,28 +42,28 @@ let halite4Dimension = Dimension.create(halite4, {
 })
 
 /**
- * The participating competitors, add and remove from this list and provide a 
- * path to the file for the agent and a identifying name 
+ * The participating competitors, add and remove from this list and provide a
+ * path to the file for the agent and a identifying name
  * e.g { file: "path/to/bot.py", name: "my_name" }
- */ 
+ */
 let botlist = [
   { file: "./bots/still.py", name: "stillbot-1" },
   { file: "./bots/still.py", name: "stillbot-2" },
-  { file: "./bots/swarm.py", name: "swarm" }, 
+  { file: "./bots/swarm.py", name: "swarm" },
   { file: "./bots/bot.py", name: "somebot" }
 ]
 
 // Create our tournament
 let tourney = halite4Dimension.createTournament(botlist, {
-  type: Tournament.TOURNAMENT_TYPE.LADDER,
+  type: Tournament.Type.LADDER,
   id: 'h4ladder',
   name: 'Your Halite 4 Trueskill Ladder',
-  rankSystem: Tournament.RANK_SYSTEM.TRUESKILL, // change to Tournament.RANK_SYSTEM.ELO for ELO ranking
+  rankSystem: Tournament.RankSystemTypes.ELO, // change to Tournament.RANK_SYSTEM.ELO for ELO ranking
   loggingLevel: Logger.LEVEL.WARN,
   consoleDisplay: true,
   defaultMatchConfigs: {
     loggingLevel: Logger.LEVEL.NONE,
-    storeErrorLogs: true // change to false to stop generating error logs from matches
+    storeErrorLogs: false // change to false to stop generating error logs from matches
   },
   resultHandler: (res) => {
     return {ranks: res.ranks};
