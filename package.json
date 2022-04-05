@@ -9,6 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "dimensions-ai": "^5.1.3"
+    "dimensions-ai": "^3.2.5"
   }
 }

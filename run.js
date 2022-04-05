@@ -1,5 +1,4 @@
 const Dimension = require('dimensions-ai');
-const { RankSystem } = require('dimensions-ai/lib/main/Tournament')
 let Tournament = Dimension.Tournament;
 let Logger = Dimension.Logger;
 
@@ -55,15 +54,15 @@ let botlist = [
 
 // Create our tournament
 let tourney = halite4Dimension.createTournament(botlist, {
-  type: Tournament.Type.LADDER,
+  type: Tournament.TOURNAMENT_TYPE.LADDER,
   id: 'h4ladder',
   name: 'Your Halite 4 Trueskill Ladder',
-  rankSystem: Tournament.RankSystemTypes.ELO, // change to Tournament.RANK_SYSTEM.ELO for ELO ranking
+  rankSystem: Tournament.RANK_SYSTEM.TRUESKILL, // change to Tournament.RANK_SYSTEM.ELO for ELO ranking
   loggingLevel: Logger.LEVEL.WARN,
   consoleDisplay: true,
   defaultMatchConfigs: {
     loggingLevel: Logger.LEVEL.NONE,
-    storeErrorLogs: false // change to false to stop generating error logs from matches
+    storeErrorLogs: true // change to false to stop generating error logs from matches
   },
   resultHandler: (res) => {
     return {ranks: res.ranks};
